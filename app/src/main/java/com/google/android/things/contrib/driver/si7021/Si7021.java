@@ -82,7 +82,7 @@ public class Si7021 implements AutoCloseable {
 
     private I2cDevice device;
 
-    private final byte[] buffer = new byte[3]; // for reading sensor values
+    private final byte[] buffer = new byte[2]; // for reading sensor values
 
     /**
      * Create a new Si7021 sensor driver connected on the given bus.
@@ -139,7 +139,7 @@ public class Si7021 implements AutoCloseable {
      */
     public float readTemperature() throws IOException, IllegalStateException {
 
-        int rawTemp = readSample(MEASTEMP_NOHOLD_CMD);
+        int rawTemp = readSample(MEASTEMP_HOLD_CMD);
         return compensateTemperature(rawTemp);
     }
 
@@ -150,7 +150,7 @@ public class Si7021 implements AutoCloseable {
      */
     public float readHumidity() throws IOException, IllegalStateException {
 
-        int rawTemp = readSample(MEASRH_NOHOLD_CMD);
+        int rawTemp = readSample(MEASRH_HOLD_CMD);
         return compensateHumidity(rawTemp);
     }
 
@@ -164,14 +164,12 @@ public class Si7021 implements AutoCloseable {
         }
         synchronized (buffer) {
             try {
-
-                    device.readRegBuffer(address, buffer, 3);
+                    device.readRegBuffer(address, buffer, buffer.length);
                     // msb[7:0] lsb[7:0] xlsb[7:4]
                     int msb = buffer[0] & 0xff;
                     int lsb = buffer[1] & 0xff;
-                    int xlsb = buffer[2] & 0xf0;
                     // Convert to 20bit integer
-                    return (msb << 16 | lsb << 8 | xlsb) >> 4;
+                    return msb << 8 | lsb;
                 }
 
             catch (IOException e) {

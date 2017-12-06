@@ -8,9 +8,7 @@ import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.google.android.things.contrib.driver.si7021.Si7021;
 import com.google.android.things.contrib.driver.si7021.Si7021SensorDriver;
-import com.google.android.things.pio.I2cDevice;
 import com.google.android.things.pio.PeripheralManagerService;
 
 import java.io.IOException;
@@ -26,7 +24,6 @@ public class WeatherStationActivity extends Activity {
 
     private Si7021SensorDriver mEnvironmentalSensorDriver;
     private SensorManager mSensorManager;
-    private final PeripheralManagerService managerService = new PeripheralManagerService();
 
 
     private float mLastTemperature;
