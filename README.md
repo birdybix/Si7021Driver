@@ -9,13 +9,15 @@ I started with the [Android Things weather station sample application](https://g
 Establishing a connexion to the sensor
 Retrieving the hacknoledment of the reading of the chip id (58) - Proving that reading works
 
-Failing at getting sensor data Temperature and Humidity - PioException: I/O error
+Getting sensor data Temperature and Humidity
+
+Please feel free to try it and give your feedback
 
 ## Config
 
 - Raspberry Pi 3
 - Android Studio 3.0
-- [Adafruit SI7021 Temperature and Humidity sensor](https://www.adafruit.com/product/3251)
+- [Adafruit SI7021 Temperature and Humidity sensor](https://www.adafruit.com/product/3251)[(Datasheet)](https://cdn-learn.adafruit.com/assets/assets/000/035/931/original/Support_Documents_TechnicalDocs_Si7021-A20.pdf)
 
 
 ## Schematics
