@@ -62,7 +62,7 @@ public class WeatherStationActivity extends Activity {
 
         mSensorManager = ((SensorManager) getSystemService(SENSOR_SERVICE));
         try {
-            mEnvironmentalSensorDriver = new Si7021SensorDriver(BoardDefaults.getI2cBus());
+            mEnvironmentalSensorDriver = new Si7021SensorDriver("I2C1");
             mSensorManager.registerDynamicSensorCallback(mDynamicSensorCallback);
             mEnvironmentalSensorDriver.registerTemperatureSensor();
             mEnvironmentalSensorDriver.registerHumiditySensor();
